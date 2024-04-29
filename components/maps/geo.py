@@ -22,5 +22,4 @@ def get_route(api_key: str, start_address: str, end_address: str):
     url = f"https://graphhopper.com/api/1/route?point={start_lat},{start_lon}&point={end_lat},{end_lon}&vehicle=car&locale=en&key={api_key}"
     response = requests.get(url)
     data = response.json()
-    return data['paths'][0]['distance']  # Расстояние в метрах
-
+    return data['paths'][0]['distance'] / 1000  # Расстояние в метрах

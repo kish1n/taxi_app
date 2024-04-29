@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from maps import maps_get
+from components.maps import maps_get
 
 app = FastAPI()
 app.include_router(maps_get.router)

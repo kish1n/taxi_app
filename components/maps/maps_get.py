@@ -3,8 +3,8 @@ from pydantic import BaseModel
 from typing import Dict, Optional
 from enum import Enum, auto
 
-from maps.geo import get_route
-from settings import settings
+from components.maps.geo import get_route
+from settings.config import settings
 
 class Category(str, Enum):
     ECONOMY = "economy"
@@ -48,7 +48,7 @@ def new_trip(category: Category, start_location: str, end_location: str):
 
     ride = TaxiRide(
         category=category, 
-        distance=distance / 1000,
+        distance=distance,
         start_location=start_location, 
         end_location=end_location
     )
@@ -60,3 +60,4 @@ def new_trip(category: Category, start_location: str, end_location: str):
         "end_location": ride.end_location,
         "cost": ride.calculate_cost()
     }
+
