@@ -1,38 +1,24 @@
-from sqlalchemy import MetaData, Table, Column, Integer, String, ForeignKey, TIMESTAMP, create_engine, BigInteger, text
-from sqlalchemy.orm import relationship, Mapped, mapped_column, DeclarativeBase
-
+from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, text, func, BigInteger
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from typing import Annotated
 import datetime
 
-metadata = MetaData()
+from database import Base
 
-Driver = Table(
-    'driver',
-    metadata,
-    Column('id', Integer, primary_key=True),
-    Column('created_at', TIMESTAMP, nullable=False, server_default=text("TIMEZONE('utc', now())")),
-    Column('title', String, nullable=False),
-    Column('active', Integer, nullable=False, default=False),
-    Column('car_info', String, nullable=False),
-    Column('stars', Integer, nullable=False),
-    Column('num_trips', Integer, nullable=False),
-)
+intpk = Annotated[int, mapped_column(BigInteger, primary_key=True)]
+name = Annotated[str, mapped_column(nullable=False)]
+active = Annotated[bool, mapped_column(nullable=False, default=False)]
+data_now = Annotated[datetime.datetime, mapped_column(nullable=False, server_default=text("TIMEZONE('utc', now())"))]
 
-Passenger = Table(
-    'passenger',
-    metadata,
-    Column('id', Integer, primary_key=True),
-    Column('created_at', TIMESTAMP, nullable=False, server_default=text("TIMEZONE('utc', now())")),
-    Column('title', String, nullable=False),
-    Column('stars', Integer, nullable=False),
-    Column('num_trips', Integer, nullable=False),
-)
+class Passenger(Base):
+    __tablename__ = "passenger"
+    id: Mapped[intpk]
+    name: Mapped[name]
+    city: Mapped[name]
 
-City = Table(
-    'city',
-    metadata,
-    Column('id', Integer, primary_key=True),
-    Column('created_at', TIMESTAMP, nullable=False, server_default=text("TIMEZONE('utc', now())")),
-    Column('title', String, nullable=False),
-    Column('active', Integer, nullable=False, default=False),
-)
+class Driver(Base):
+    __tablename__ = "driver"
+    id: Mapped[intpk]
+    name: Mapped[name]
+    city: Mapped[name]
+    car: Mapped[name]
