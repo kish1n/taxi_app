@@ -32,8 +32,9 @@ class TaxiRide(BaseModel):
             Category.PREMIUM: 60.0
         }
         return pickup_price[self.category] + (base_price[self.category] * 17.5 * self.distance)
+
 router = APIRouter(
-    prefix = "/maps",
+    prefix="/maps",
 )
 
 @router.get("/newtrip")
