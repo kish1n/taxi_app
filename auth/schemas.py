@@ -13,6 +13,9 @@ class UserRead(schemas.BaseUser[int]):
     is_verified: bool = False
     is_driver: bool = False
 
+    class Config:
+        from_attributes = True
+
 class UserCreate(schemas.BaseUserCreate):
     id: int
     username: str

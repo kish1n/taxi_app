@@ -1,13 +1,14 @@
-import asyncio
 from fastapi import FastAPI
-from fastapi_users import fastapi_users, FastAPIUsers
+from fastapi_users import FastAPIUsers
 
-from components.auth.manager import get_user_manager
-from components.auth.schemas import UserRead, UserCreate
-from components.maps import maps_get
-from models.func import Core
-from components.auth.auth import auth_backend
-from models.models import User
+from auth.manager import get_user_manager
+from auth.schemas import UserRead, UserCreate
+
+from func import Core
+from auth.base_config import auth_backend
+from auth.models import User
+
+from offer.router import router as offer_router
 
 app = FastAPI(
     title="Taxi 1488",
@@ -30,7 +31,7 @@ app.include_router(
     tags=["auth"],
 )
 
-app.include_router(maps_get.router)
+app.include_router(offer_router)
 
 @app.get("/")
 async def read_root():

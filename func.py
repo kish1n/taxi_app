@@ -1,8 +1,4 @@
-from sqlalchemy import text, insert, select, update
-from datetime import datetime
-
-from models.models import User, Driver
-from models.database import async_sessionmaker, async_engine, Base
+from database import async_engine, Base
 
 
 class Core:
