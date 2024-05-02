@@ -3,12 +3,12 @@ from pydantic import BaseModel
 from typing import Dict
 from enum import Enum
 
-from offer.utils import get_route
-from config import settings
-from offer.utils import Category, TaxiRide
+from src.offer.utils import get_route
+from src.config import settings
+from src.offer.utils import Category, TaxiRide
 
-from auth.models import User, metadata
-from auth.base_config import current_user
+from src.auth.models import User, metadata
+from src.auth.base_config import current_user
 
 router = APIRouter(
     prefix="/offer",

@@ -1,5 +1,4 @@
-from database import async_engine, Base
-
+from src.database import async_engine, Base
 
 class Core:
     @staticmethod

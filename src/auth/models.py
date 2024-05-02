@@ -5,7 +5,7 @@ from sqlalchemy import Table, Column, Integer, String, TIMESTAMP, ForeignKey, JS
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import Mapped, mapped_column
 
-from database import Base
+from src.database import Base
 
 metadata = MetaData()
 

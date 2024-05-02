@@ -1,14 +1,14 @@
 from fastapi import FastAPI
 from fastapi_users import FastAPIUsers
 
-from auth.manager import get_user_manager
-from auth.schemas import UserRead, UserCreate
+from src.auth.manager import get_user_manager
+from src.auth.schemas import UserRead, UserCreate
 
-from func import Core
-from auth.base_config import auth_backend
-from auth.models import User
+from src.func import Core
+from src.auth.base_config import auth_backend
+from src.auth.models import User
 
-from offer.router import router as offer_router
+from src.offer.router import router as offer_router
 
 app = FastAPI(
     title="Taxi 1488",
@@ -38,4 +38,4 @@ async def read_root():
     await Core.create_tables()
     return {"message": "Taxi 1488"}
 
-#uvicorn main:app --reload
+# uvicorn src.main:app --reload
