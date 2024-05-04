@@ -9,6 +9,7 @@ from src.auth.base_config import auth_backend
 from src.auth.models import User
 
 from src.offer.router import router as offer_router
+from src.pages.router import router as pg_router
 
 app = FastAPI(
     title="Taxi 1488",
@@ -31,11 +32,12 @@ app.include_router(
     tags=["auth"],
 )
 
+app.include_router(pg_router)
 app.include_router(offer_router)
 
 @app.get("/")
 async def read_root():
-    await Core.create_tables()
+    #await Core.create_tables()
     return {"message": "Taxi 1488"}
 
-# uvicorn src.main:app --reload
+'''uvicorn src.main:app --reload'''

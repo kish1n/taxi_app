@@ -24,7 +24,6 @@ async def new_trip(
 ):
     try:
         distance = get_route(settings.API_GRAPHHOPPER, start_location, end_location)
-        print(distance)
         if distance is None:
             raise ValueError("Unable to calculate distance. One or more addresses may be incorrect.")
     except Exception as e:
@@ -36,6 +35,15 @@ async def new_trip(
         start_location=start_location,
         end_location=end_location
     )
+
+    message = {
+        "message": f"New trip ordered from {start_location} to {end_location}",
+        "category": category.name,
+        "distance": distance,
+        "cost": ride.calculate_cost()
+    }
+
+    print(message)
 
     return {
         "category": ride.category,
