@@ -10,6 +10,7 @@ from src.auth.models import User
 
 from src.offer.router import router as offer_router
 from src.pages.router import router as pg_router
+from src.driver.router import router as user_router
 
 app = FastAPI(
     title="Taxi 1488",
@@ -34,6 +35,7 @@ app.include_router(
 
 app.include_router(pg_router)
 app.include_router(offer_router)
+app.include_router(user_router)
 
 @app.get("/")
 async def read_root():

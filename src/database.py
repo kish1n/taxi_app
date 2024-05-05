@@ -21,26 +21,28 @@ async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
         yield session
 
 
-# class Car(Base):
-#     __tablename__ = 'cars'
-#     id = Column(Integer, primary_key=True)
-#     car_brand = Column(String)
-#     car_model = Column(String)
-#     car_color = Column(String)
-#     car_plate = Column(String)
-#     car_type = Column(String)
-#     num_seats = Column(Integer)
-#
-# class Driver(Base):
-#     __tablename__ = 'drivers'
-#     id = Column(Integer, primary_key=True)
-#     license_num = Column(Integer)
-#     car_id = Column(Integer, ForeignKey('cars.id'))
-#     car = relationship('Car')
-#     car_owner = Column(String)
-#     car_owner_contact = Column(String)
-#     trips = Column(Integer, default=0)
-#     rating = Column(Float, default=0.0)
+class Car(Base):
+    __tablename__ = 'cars'
+    id = Column(Integer, primary_key=True)
+    car_brand = Column(String)
+    car_model = Column(String)
+    car_color = Column(String)
+    car_plate = Column(String)
+    car_type = Column(String)
+    num_seats = Column(Integer)
+
+class Driver(Base):
+    __tablename__ = 'drivers'
+    id = Column(Integer, primary_key=True)
+    license_num = Column(Integer)
+    car_id = Column(Integer, ForeignKey('cars.id'))
+    car = relationship('Car')
+    car_owner = Column(String)
+    car_owner_contact = Column(String)
+    trips = Column(Integer, default=0)
+    rating = Column(Float, default=0.0)
+    city = Column(String)
+
 #
 # class Passenger(Base):
 #     __tablename__ = 'passengers'

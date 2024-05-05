@@ -15,7 +15,7 @@ router = APIRouter(
     tags=["offer"]
 )
 
-@router.get("/newtrip")
+@router.get("/trip")
 async def new_trip(
         category: Category,
         start_location: str,
